@@ -59,6 +59,7 @@ with tab3:
     year_of_interest = int(st.text_input('Enter a Year'))
     top_names = df[df['year'] == year_of_interest]
     top_female = top_names[top_names['sex'] == 'F'].nlargest(10, 'n')
+    top_male = top_names[top_names['sex'] == 'M'].nlargest(10, 'n')
 
 
     fig3 = plt.figure(figsize=(15,8))
@@ -69,7 +70,16 @@ with tab3:
     plt.tight_layout()
     plt.show()
 
+    fig4 = plt.figure(figsize=(15,8))
+    sns.barplot(data=top_male, x='n', y='name')
+    plt.title(f"Top 10 Male Names in {year_of_interest}")
+    plt.xlabel('Count')
+    plt.ylabel('Name')
+    plt.tight_layout()
+    plt.show()
+
     st.pyplot(fig3)
+    st.pyplot(fig4)
 
 
 
